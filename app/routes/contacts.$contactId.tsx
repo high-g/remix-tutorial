@@ -10,6 +10,10 @@ import { getContact } from "../data";
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   invariant(params.contactId, "missing contactId params");
   const contact = await getContact(params.contactId);
+  if (!contact) {
+    throw new Response("Not Found");
+  }
+
   return json({ contact });
 };
 
