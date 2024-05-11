@@ -16,8 +16,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 export default function Contact() {
   const { contact } = useLoaderData<typeof loader>();
 
-  console.log("Contact", contact);
-
   return (
     <div id="contact">
       <div>
