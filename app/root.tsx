@@ -9,6 +9,7 @@ import {
   ScrollRestoration,
   Outlet,
   useLoaderData,
+  useNavigation,
 } from "@remix-run/react";
 
 import { getContacts, ContactRecord, createEmptyContact } from "./data";
@@ -34,6 +35,7 @@ export async function loader() {
 
 export default function App() {
   const { contacts }: { contacts: ContactRecord[] } = useLoaderData();
+  const navigation = useNavigation();
 
   return (
     <html lang="en">
@@ -92,7 +94,10 @@ export default function App() {
           </nav>
         </div>
 
-        <div id="detail">
+        <div
+          id="detail"
+          className={navigation.state === "loading" ? "loading" : ""}
+        >
           <Outlet />
         </div>
 
